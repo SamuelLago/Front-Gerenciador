@@ -7,7 +7,6 @@
 </head>
 <body>
     <button id="fetchButton">Fetch Message</button>
-    <button id="postButton">Send Data</button>
     <div id="result"></div>
 
     <script>
@@ -26,35 +25,6 @@
                     console.error('Fetch error:', error);
                     document.getElementById('result').innerText = 'Fetch error: ' + error.message;
                 });
-        });
-
-        document.getElementById('postButton').addEventListener('click', () => {
-            const requestBody = {
-                Name: 'John',
-                Surname: 'Doe',
-                Age: 30
-            };
-
-            fetch('http://localhost:5555/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(requestBody)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error: ' + response.statusText);
-                }
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('result').innerText = data;
-            })
-            .catch(error => {
-                console.error('Fetch error:', error);
-                document.getElementById('result').innerText = 'Fetch error: ' + error.message;
-            });
         });
     </script>
 </body>
